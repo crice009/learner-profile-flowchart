@@ -1,3 +1,11 @@
+/*
+ *  Mad props to Kevin Powall for all his awesome work on the web, and how to make it look nice: https://youtu.be/8QKOaTYvYUA
+ *
+ *  CSS adapted from Kevin's work by Corey Rice, and formatted to fit screens of all sizes with current compatability updates. 
+ *  June 30, 2020
+ *
+ */
+
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
 :root {
     --background: rgba(175, 28, 0, 0.85);
