@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html>
 
 <head>
@@ -11,18 +10,9 @@
     <meta name="description" content="Iterations toward teaching Fab Academy Skills to mortals">
     <meta name="keywords" content="Fab Lab, Fab Academy, Make Haven">
     <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="conceptweb.css">
     <script src="cytoscape.min.js"></script>
 </head>
-
-<style>
-    #cy {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0px;
-        left: 0px;
-    }
-</style>
 
 <body>
     <header>
@@ -41,27 +31,7 @@
         </label>
     </header>
     <div id="cy"></div>
-    <script>
-        var cy = cytoscape({
-            container: document.getElementById('cy'),
-            elements: [{
-                data: {
-                    id: 'a'
-                }
-            }, {
-                data: {
-                    id: 'b'
-                }
-            }, {
-                data: {
-                    id: 'ab',
-                    source: 'a',
-                    target: 'b',
-                    label: 'link'
-                }
-            }]
-        });
-    </script>
+    <script type="text/javascript" src="conceptweb.js"></script>
 </body>
 
 </html>
