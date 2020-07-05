@@ -25,6 +25,7 @@ body {
     font-weight: 400;
 }
 
+
 /* navigation styles start here */
 
 header {
@@ -122,7 +123,8 @@ nav a {
     transition: opacity 150ms ease-in-out;
 }
 
-nav a:hover, .on-page {
+nav a:hover,
+.on-page {
     color: #000;
 }
 
@@ -147,6 +149,24 @@ nav a:hover, .on-page {
 .nav-toggle:checked~.nav-toggle-label span::after {
     transform: translateY(-7px) rotate(-45deg);
     background: white;
+}
+
+#controls {
+    margin: 8px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#controls button {
+    border: 0;
+    border-radius: 5px;
+    padding: 1ch 2ch;
+    margin: 0 0 0 5px;
+    font-size: x-large;
+    color: white;
+    font-style: bold;
+    background-color: rgba(21, 34, 211, 0.925);
 }
 
 @media screen and (min-width: 800px) {
@@ -186,8 +206,8 @@ nav a:hover, .on-page {
         opacity: 1;
         position: relative;
     }
-    nav a::before, 
-    .on-page::before{
+    nav a::before,
+    .on-page::before {
         content: '';
         display: block;
         height: 5px;
@@ -200,7 +220,7 @@ nav a:hover, .on-page {
         transition: transform ease-in-out 250ms;
     }
     nav a:hover::before,
-    .on-page::before{
+    .on-page::before {
         transform: scale(1, 1);
     }
 }
