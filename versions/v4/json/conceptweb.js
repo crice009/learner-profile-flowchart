@@ -2,13 +2,13 @@ var cy = cytoscape({
     container: document.getElementById('cy'),
     elements: {
         nodes: [
-            { data: { id: 'n1', order: 1, name: 'Fab Lab Skills', href: 'https://prezi.com/view/zBqbXsXRkA4yfSB1OiAT/' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n2', order: 4, name: '3D Design' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n3', order: 3, name: '2D Design' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n4', order: 2, name: 'Fab Lab Mindset' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n5', order: 5, name: 'Computational Thinking' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n6', order: 6, name: 'Electronics' }, classes: 'multiline-auto center-center' },
-            { data: { id: 'n7', order: 7, name: 'Microcontrollers' }, classes: 'multiline-auto center-center' }
+            { data: { id: 'n1', order: 1, name: 'Fab Lab Skills', href: 'https://prezi.com/view/zBqbXsXRkA4yfSB1OiAT/' } },
+            { data: { id: 'n2', order: 4, name: '3D Design' } },
+            { data: { id: 'n3', order: 3, name: '2D Design' } },
+            { data: { id: 'n4', order: 2, name: 'Fab Lab Mindset' } },
+            { data: { id: 'n5', order: 5, name: 'Computational Thinking' } },
+            { data: { id: 'n6', order: 6, name: 'Electronics' } },
+            { data: { id: 'n7', order: 7, name: 'Microcontrollers' } }
         ],
         edges: [
 
@@ -24,19 +24,22 @@ var cy = cytoscape({
         selector: 'node',
         style: {
             shape: 'concentric',
-            'background-color': 'green',
+            'background-color': 'rgb(94,130,23)',
+            'font-family': '"Oswald", sans-serif',
             'color': 'white',
             label: 'data(name)'
         }
     }],
     layout: {
         name: 'concentric', //https://js.cytoscape.org/#layouts/concentric
-        spacingFactor: 5,
+        spacingFactor: 5, // makes it so the nodes aren't on top of each other (multiplies edge lengths)
         concentric: function(node) {
             return node.degree();
         },
         levelWidth: function(nodes) {
             return 1;
-        }
+        },
     }
 });
+
+cy.fit(100); //make it look nice when it first loads - right now this means the whole map is on screen with 'padding'

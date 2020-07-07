@@ -8,8 +8,8 @@
 
 @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
 :root {
-    --background: rgba(175, 28, 0, 0.85);
-    --logo: #ffffff;
+    --mh-background: rgba(135, 25, 25, 0.85);
+    --mh-text: #e0e0e0ff
 }
 
 *,
@@ -20,7 +20,7 @@
 
 body {
     margin: 0;
-    background: #222;
+    background: #333333;
     font-family: 'Work Sans', sans-serif;
     font-weight: 400;
 }
@@ -29,15 +29,16 @@ body {
 /* navigation styles start here */
 
 header {
-    background: var(--background);
+    background: var(--mh-background);
     text-align: center;
     position: fixed;
     z-index: 999;
     width: 100%;
+    font-family: 'Oswald', sans-serif;
 }
 
 .logo {
-    color: var(--logo);
+    color: var(--mh-text);
 }
 
 
@@ -68,7 +69,7 @@ header {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
     display: block;
-    background: white;
+    background: var(--mh-text);
     height: 2px;
     width: 2em;
     border-radius: 2px;
@@ -95,7 +96,7 @@ nav {
     text-align: left;
     top: 100%;
     left: 0;
-    background: var(--background);
+    background: var(--mh-background);
     width: 30%;
     min-width: 14ch;
     transform: scale(1, 0);
@@ -115,7 +116,7 @@ nav li {
 }
 
 nav a {
-    color: white;
+    color: var(--mh-text);
     text-decoration: none;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -143,12 +144,12 @@ nav a:hover,
 
 .nav-toggle:checked~.nav-toggle-label span::before {
     transform: translateY(7px) rotate(45deg);
-    background: white;
+    /* background: white; */
 }
 
 .nav-toggle:checked~.nav-toggle-label span::after {
     transform: translateY(-7px) rotate(-45deg);
-    background: white;
+    /* background: white; */
 }
 
 #controls {
@@ -166,7 +167,7 @@ nav a:hover,
     font-size: x-large;
     color: white;
     font-style: bold;
-    background-color: rgba(21, 34, 211, 0.925);
+    background-color: rgba(15, 83, 83, 0.925);
 }
 
 @media screen and (min-width: 800px) {

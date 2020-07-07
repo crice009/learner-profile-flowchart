@@ -14,7 +14,7 @@ function advance() {
 
     var node = cy.filter('node[order = ' + String(sequence_position) + ']');
     console.log(node);
-    cy.fit(node, 150); //150 is the relative pixel count around the selected item...
+    cy.fit(node, 400); //150 is the relative pixel count around the selected item...
     document.getElementById('sequence').classList.add("on-page");
     document.getElementById('map').classList.remove("on-page");
 };
@@ -31,7 +31,7 @@ function regress() {
 };
 
 function cy_fit() {
-    cy.fit();
+    cy.fit(100);
     document.getElementById('sequence').classList.remove("on-page");
     document.getElementById('map').classList.add("on-page");
 };
