@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>JSON data</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Fab Academy for Humans</title>
+    <meta name="author" content="Corey Rice & JR Logan">
+    <meta name="description" content="Iterations toward teaching Fab Academy Skills to mortals">
+    <meta name="keywords" content="Fab Lab, Fab Academy, Make Haven">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+    </style>
+    <link rel="stylesheet" type="text/css" href="styles/header.css">
+    <link rel="stylesheet" type="text/css" href="styles/conceptweb.css">
+    <script src="scripts/cytoscape.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="logo">
+            <img src="../../../mh-icon.png" style="height: inherit;"> Learning
+        </h1>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a class='nav-links on-page' id='map' onclick="cy_fit()">Map</a></li>
+                <li><a class='nav-links' id='sequence' onclick="advance()">Sequence</a></li>
+                <li><a class='nav-links' id='lessons' href="#">Lessons</a></li>
+                <li><a class='nav-links' id='about' href="#">About</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+    <div id="cy"></div>
+    <script type="text/javascript" src="scripts/conceptweb.js"></script>
+    <script type="text/javascript" src="scripts/sequence.js"></script>
+    <div id='controls'>
+        <p style="color:white;font-size:larger;text-align: center;padding-bottom:0;margin-bottom:3px;">Sequence:</p>
+        <button onclick="regress()" alt-text="Back"><</button>
+        <button onclick="advance()" alt-text="Forward">></button>
+    </div>
+
+</body>
+
+</html>
