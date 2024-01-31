@@ -8,4 +8,4 @@ The original idea for this flowchart style comes from Nick DiGiorgio, of Clevela
 It took a long time to move this idea forward into the digital space...
 
 ## Progress Updates:
-After a long time staying dormant on this project, we've found good collaborators, and the right toolset to move things forward. There is a landing page that will give the basic overview of the versions up to this point, and a history of where it came from. Check back often to see the progress that may happen here. 
+Starting to build with a dockerized application. 
