@@ -1,3 +1,4 @@
+version: '3'
 services:
   vue-app:
     build:
@@ -6,3 +7,18 @@ services:
       NODE_ENV: production
     ports:
       - 5173:5173
+  
+  # neo4j:
+  #   image: neo4j:latest
+  #   build:
+  #     context: ./neo4j-data/
+  #   ports:
+  #     - "7474:7474" # GUI port
+  #     - "7687:7687" # graph_db port
+  #   volumes:
+  #     - ./neo4j_data:/data
+  #   environment:
+  #     - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+  #     - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+  #     - NEO4J_dbms_memory_heap_initial__size=512m
+  #     - NEO4J_dbms_memory_heap_max__size=1G
