@@ -30,4 +30,4 @@ coverage
 *.tsbuildinfo
 
 # neo4j database
-neo4j-data/neo4j_data/*
+neo4j-data/neo4j_data/
