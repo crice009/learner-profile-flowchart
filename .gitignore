@@ -1,0 +1,3 @@
+# environment varables 
+*.env
+!.env.example
