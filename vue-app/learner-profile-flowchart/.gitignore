@@ -29,5 +29,12 @@ coverage
 
 *.tsbuildinfo
 
+# dot-env files
+*.env
+*.env.local
+!.env.example
+
 # neo4j database
 neo4j-data/neo4j_data/
+
+
