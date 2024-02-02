@@ -24,3 +24,13 @@ services:
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
       - NEO4J_dbms_memory_heap_initial__size=512m
       - NEO4J_dbms_memory_heap_max__size=1G
+
+  # for the backend of the app
+  server:
+    build:
+      context: ./pocketbase/
+      target: final
+    ports:
+      - 8090:8090
+    volumes:
+      - ./pocketbase/pb_data:/home/appuser/pb_data
