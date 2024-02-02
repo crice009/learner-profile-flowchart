@@ -2,7 +2,10 @@ module lpf/base
 
 go 1.21.6
 
-require github.com/pocketbase/pocketbase v0.21.1
+require (
+	github.com/neo4j/neo4j-go-driver/v4 v4.4.7
+	github.com/pocketbase/pocketbase v0.21.1
+)
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.7 // indirect
