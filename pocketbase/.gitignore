@@ -5,3 +5,8 @@ pb_data/*
 .env
 .env.*
 !.env.example
+
+# do not copy the pb_data directory
+# except for the .gitkeep file, to save permissions
+pb_data/*
+!pb_data/.gitkeep
