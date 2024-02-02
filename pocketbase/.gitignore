@@ -1,0 +1,7 @@
+# do not copy the data files
+pb_data/*
+
+# leave the .env file
+.env
+.env.*
+!.env.example
