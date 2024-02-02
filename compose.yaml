@@ -1,6 +1,7 @@
 version: '3'
 services:
-  vue-app:
+  # the frontend of the app
+  vue-app: 
     build:
       context: ./vue-app/learner-profile-flowchart/
     environment:
@@ -8,7 +9,8 @@ services:
     ports:
       - 5173:5173
   
-  neo4j:
+  # for the meaningful content
+  neo4j: 
     image: neo4j:latest
     build:
       context: ./neo4j-data/
@@ -22,3 +24,26 @@ services:
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
       - NEO4J_dbms_memory_heap_initial__size=512m
       - NEO4J_dbms_memory_heap_max__size=1G
+  
+  # for users and other things
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USERNAME}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - ${PATH_TO_VOLUME}:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+      
+  # Database management tool, for postgres, in this case
+  adminer: 
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      ADMINER_DEFAULT_USERNAME: ${ADMINER_DEFAULT_USERNAME}
+      ADMINER_DEFAULT_PASSWORD: ${ADMINER_DEFAULT_PASSWORD}
