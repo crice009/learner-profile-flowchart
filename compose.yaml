@@ -34,3 +34,8 @@ services:
       - 8090:8090
     volumes:
       - ./pocketbase/pb_data:/home/appuser/pb_data
+    environment:
+      - NEO4J_USERNAME=${NEO4J_USERNAME}
+      - NEO4J_PASSWORD=${NEO4J_PASSWORD}
+    depends_on:
+      - neo4j
