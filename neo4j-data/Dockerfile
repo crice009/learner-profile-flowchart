@@ -1,2 +1,5 @@
 # This is a Dockerfile for the neo4j-data image
-FROM neo4j:latest
+FROM neo4j:5.16.0
+
+# load the neo4j.conf file into the container
+COPY ./neo4j.conf /var/lib/neo4j/conf/neo4j.conf
