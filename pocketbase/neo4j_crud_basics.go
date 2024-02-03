@@ -8,11 +8,12 @@ import (
 )
 
 type GraphDB struct {
-	driver neo4j.Driver
+	driver neo4j.DriverWithContext
 }
 
+// NewGraphDB creates a new GraphDB instance
 func NewGraphDB(uri, username, password string) (*GraphDB, error) {
-	driver, err := neo4j.NewDriver(uri, neo4j.BasicAuth(username, password, ""))
+	driver, err := neo4j.NewDriverWithContext(uri, neo4j.BasicAuth(username, password, ""))
 	if err != nil {
 		return nil, err
 	}
@@ -60,14 +61,8 @@ func (db *GraphDB) DeleteRelationship(id int64) error {
 }
 
 // ---------------------------------------------------------
-func helloWorld(ctx context.Context, uri, username, password string) (string, error) {
-	driver, err := neo4j.NewDriverWithContext(uri, neo4j.BasicAuth(username, password, ""))
-	if err != nil {
-		return "", err
-	}
-	defer driver.Close(ctx)
-
-	session := driver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+func helloWorld(ctx context.Context, db *GraphDB) (string, error) {
+	session := db.driver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
 	defer session.Close(ctx)
 
 	greeting, err := session.ExecuteWrite(ctx, func(transaction neo4j.ManagedTransaction) (any, error) {
