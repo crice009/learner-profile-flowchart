@@ -9,7 +9,7 @@
 # https://github.com/docker/awesome-compose
 services:
   frontend:
-    container_name: vue_app
+    container_name: test_vue_app
     build:
       context: .
     environment:
