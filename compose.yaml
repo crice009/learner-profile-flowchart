@@ -7,22 +7,30 @@ services:
       context: ./vue-app/learner-profile-flowchart/
     environment:
       NODE_ENV: production
-    ports:
-      - 5173:5173
+    # ports:
+    #   - 5173:5173
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.vue_app.rule=Host(`localhost`)"
+      - "traefik.http.routers.vue_app.entrypoints=web"
   
   # for the meaningful content
   neo4j: 
     container_name: neo4j
     build:
       context: ./neo4j-data/
-    ports:
-      # - "7474:7474" # GUI interface port
-      - "7687:7687"  # bolt / graph_db port
+    # ports:
+    #   # - "7474:7474" # GUI interface port
+    #   - "7687:7687"  # bolt / graph_db port
     volumes:
       - ./neo4j-data/neo4j_data:/data
       - ./neo4j-data/neo4j_logs:/logs #remove in production -- 'exec' instead
     environment:
       - NEO4J_AUTH=${NEO4J_USERNAME}/${NEO4J_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.neo4j.rule=Host(`neo.localhost`)"
+      - "traefik.http.routers.neo4j.entrypoints=web"
 
   # for the backend of the app
   server:
@@ -30,7 +38,26 @@ services:
     build:
       context: ./pocketbase/
       target: final
-    ports:
-      - 8090:8090
+    # ports:
+    #   - 8090:8090
     volumes:
       - ./pocketbase/pb_data:/home/appuser/pb_data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pb_server.rule=Host(`pb_data.localhost`)"
+      - "traefik.http.routers.pb_server.entrypoints=web"
+
+  traefik:
+    image: "traefik:v2.10"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
