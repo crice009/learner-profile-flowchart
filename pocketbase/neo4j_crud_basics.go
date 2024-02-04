@@ -20,6 +20,10 @@ func NewGraphDB(uri, username, password string) (*GraphDB, error) {
 	return &GraphDB{driver: driver}, nil
 }
 
+// --------------------------------------------------------------
+// https://neo4j.com/docs/cypher-manual/current/queries/concepts/
+// --------------------------------------------------------------
+
 func (db *GraphDB) CreateNode(label string, properties map[string]interface{}) (*neo4j.Node, error) {
 	// Implement node creation here
 	return nil, nil
