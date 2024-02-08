@@ -1,0 +1,84 @@
+# This Docker Compose file can be used to quickly bootup Dgraph Zero
+# and Alpha in different Docker containers.
+
+# It mounts /tmp/data on the host machine to /dgraph within the
+# container. You will need to change /tmp/data to a more appropriate location.
+# Run `docker-compose up` to start Dgraph.
+
+# This file is inspired by the resources available at:
+# https://github.com/dgraph-io/dgraph/raw/main/contrib/config/docker/docker-compose.yml
+
+# The port configurations are fairly complex. For more information, please see:
+# https://dgraph.io/docs/deploy/security/ports-usage/
+
+# A quick overview of the services in this file:
+# - Zero: Dgraph Zero server nodes hold metadata for the Dgraph cluster,
+#   coordinate distributed transactions, and re-balance data among server groups
+#   https://dgraph.io/docs/deploy/dgraph-zero/
+# - Alpha: Dgraph Alpha server nodes store the graph data and indices. They are very scalable.
+#   https://dgraph.io/docs/deploy/dgraph-alpha/
+# - Ratel: Ratel is a GUI for Dgraph.
+#   https://dgraph.io/docs/ratel/overview/
+
+# !!! You need to add your IP to the whitelist in the alpha service command
+
+# go and read this for more information:
+# https://dgraph.io/docs/deploy/
+
+# go watch this video for more information:
+# https://youtu.be/roHj5G4vM9Q?si=yWwAayd76HgWndbw
+
+
+version: "3"
+services:
+
+  # Metadata, coordination, and re-balancing
+  zero:
+    image: dgraph/dgraph:latest
+    volumes:
+      - ./tmp/z_data:/dgraph
+    ports:
+      - 5080:5080
+      - 6080:6080
+    restart: on-failure
+    command: dgraph zero --my=zero:5080
+
+  # Store the graph data and indices. They are very scalable.
+  alpha:
+    image: dgraph/dgraph:latest
+    volumes:
+      - ./tmp/a_data:/dgraph
+    ports:
+      - 8080:8080
+      - 9080:9080
+    restart: on-failure
+    command: dgraph alpha --my=alpha:7080 --zero=zero:5080 --security whitelist=${POCKETBASE_IP}
+
+  # ---------------------------------------------------------------------
+  # # You can add more alpha nodes like this, 
+  # # but each needs a unique name and port_offset
+  # alpha_2:
+  #   image: dgraph/dgraph:latest
+  #   volumes:
+  #     - ./tmp/a_data/2:/dgraph
+  #   ports:
+  #     # https://dgraph.io/docs/deploy/security/ports-usage/
+  #     - 8081:8081
+  #     - 9081:9081
+  #   restart: on-failure
+  #   command: dgraph alpha  --my=alpha_2:7081 --zero=zero:5080  --port_offset 1
+  # ---------------------------------------------------------------------
+
+  # GUI for Dgraph.
+  ratel:
+    image: dgraph/ratel:latest
+    ports:
+      - 8000:8000
+
+volumes:
+  z_data:
+  a_data:
+
+networks:
+  dgraph:
+    

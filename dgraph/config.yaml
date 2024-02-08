@@ -1,0 +1,25 @@
+#
+# This is a sample configuration file for Dgraph Alpha.
+# taken from: https://dgraph.io/docs/deploy/config/
+#
+# can be loaded in compose.yaml 'command' with the --config_file flag
+#
+
+badger:
+  compression: zstd:1
+trace:
+  jaeger: http://jaeger:14268
+security:
+  whitelist: 10.0.0.0/8,172.0.0.0/8,192.168.0.0/16
+tls:
+  ca_cert: /dgraph/tls/ca.crt
+  client_auth_type: REQUIREANDVERIFY
+  server_cert: /dgraph/tls/node.crt
+  server_key: /dgraph/tls/node.key
+  use_system_ca: true
+  internal_port: true
+  client_cert: /dgraph/tls/client.dgraphuser.crt
+  client_key: /dgraph/tls/client.dgraphuser.key
+
+
+# read more about TLS at: https://dgraph.io/docs/deploy/security/tls-configuration/

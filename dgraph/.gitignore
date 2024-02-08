@@ -1,0 +1,5 @@
+# dgraph Zero data
+tmp/z_data/
+
+# dgraph Alpha data
+tmp/a_data/
