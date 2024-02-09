@@ -7,6 +7,8 @@ Specifically, these are pure JSON, and designed to be handled with [Ratel](https
 ## First, create a Schema
 ! this needs redefined
 
+https://dgraph.io/tour/schema/1/
+
 ## Run a mutation
 The *Create*, *Update*, and *Delete* operations in Dgraph are called mutations.
 
